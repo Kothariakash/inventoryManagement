@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block title %}Update Location{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h2 class="text-center">
+    Movements
+  </h2>
+  <form action="/movements" method="post">
+    <div class="row">
+      <div class="form-group">
+        <label for="from-location">From location:</label>
+        <select name="from-location" id="from-location" class="form-control">
+          <option value="none">None</option>
+          {% for location in locations %}
+          <option value="{{location.id}}" {% if location.id == movement.from_location_id%}selected{% endif %}>{{location.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group col">
+        <label for="to-location">To location:</label>
+        <select name="to-location" id="to-location" class="form-control">
+            <option value="none">None</option>
+            {% for location in locations %}
+            <option value="{{location.id}}" {% if location.id == movement.to_location_id%}selected{% endif %}>{{location.name}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="product">Product</label>
+        <select name="product" id="product" class="form-control">
+          {% for product in products %}
+          <option value="{{product.id}}" {% if product.id == movement.product_id%}selected{% endif %}>{{product.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group col">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" class="form-control" min="1" max="{{movement.quantity}}">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" value="Update movement">Update</button>
+  </form>
+</div>
+{% endblock %}

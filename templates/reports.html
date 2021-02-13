@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% block title %}Movements Details{% endblock %}
+{% block content %}
+
+<div class="container">
+  </script>
+  <h2>Inventory Report</h2>
+  <table class="table table-bordered table-hover" id="reportTable">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Warehouse</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    {% for row in report %}
+      <tr>
+        <td>{{row.product}}</td>
+        <td>{{row.location}}</td>
+        <td>{{row.quantity}}</td>
+      </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}

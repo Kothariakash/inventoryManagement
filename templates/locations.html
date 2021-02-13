@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% block title %}Location Details{% endblock %}
+{% block content %}
+ 
+<div class="container">
+  <h2>Location</h2>
+  <form action="/locations" method="post">
+    <div class="form-group">
+      <label for="location-name"></label>
+      <input type="text" class="form-control" id="location-name" placeholder="location-name" name="location-name">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Location</button>
+  </form>
+
+  {%if locations|length < 1%}
+    <h4>No Locations found please start by adding location above</h4>
+  {% else %}
+    <h2>Location Information</h2>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      {% for location in locations %}
+    <tr>
+        <td>{{location.id}}</td>
+        <td>{{location.name}}</td>
+        <td>
+            <a href="/locations/{{location.id}}/update" >Update</a>
+            <!-- <a href="/locations/{{location.id}}/delete" >Delete</a> -->
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+    </table>
+    {% if error %}
+      <p class="text-danger"><strong>Error:</strong> {{ error }}
+    {% endif %}
+</div>
+  {% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Frappe Inventory</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span>&nbsp; Frappe Inventory</a>
+        </div>s
+        <ul class="nav navbar-nav">
+          <li><a href ="/products"><span class="glyphicon glyphicon-apple"></span>&nbsp;Products</a></li>
+         <li><a href ="/locations"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;Locations</a></li>
+         <li><a href ="/movements"><span class="glyphicon glyphicon-send"></span>&nbsp;Movements</a></li>
+         <li><a href="/report"><span class="glyphicon glyphicon-file" ></span>&nbsp; Reports</a></li>
+        </ul>
+      </div>
+    </nav>
+    <style>
+      body{
+          background-image: url(../static/background.png);
+          height: 100vh;
+          background-size: cover;
+          background-position: center;
+          }
+    </style>
+    {% block content %}
+    {% endblock %}
+
+  </body>
+</html>

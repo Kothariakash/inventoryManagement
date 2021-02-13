@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block title %}Update Location{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h2 class="text-center">
+    Update Location
+  </h2>
+  <form action="/locations/{{location.id}}/update" method="post">
+    <div class="form-group">
+      <label for="location-name">Location Name:</label>
+      <input type="text" class="form-control" id="location-name" placeholder="location-name" name="location-name" value="{{location.name}}">
+    </div>
+    <button type="submit" class="btn btn-primary" value="Update location">Update Location</button>
+  </form>
+  {% if error %}
+    <p class="text-danger"><strong>Error:</strong> {{ error }}
+  {% endif %}
+</div>
+{% endblock %}

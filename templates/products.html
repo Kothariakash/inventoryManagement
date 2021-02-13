@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% block title %}Products Details{% endblock %}
+{% block content %}
+
+
+<div class="container">
+  <h2>Products</h2>
+  <form action="/products" method="post">
+    <div class="form-group">
+      <label for="product-name"></label>
+      <input type="text" class="form-control" id="product-name" placeholder="product-name" name="product-name">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Products</button>
+  </form>
+
+  {%if products|length < 1%}
+    <h4>No Products found please start by adding products above</h4>
+  {% else %}  
+    <h2>Product Information</h2>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      {% for product in products %}
+    <tr>
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>
+            <a href="/products/{{product.id}}/update" >Update</a>
+            <!-- <a href="/products/{{product.id}}/delete" >Delete</a> -->
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+    </table>
+    {% if error %}
+      <p class="text-danger"><strong>Error:</strong> {{ error }}
+    {% endif %}
+</div>
+{% endblock %}  

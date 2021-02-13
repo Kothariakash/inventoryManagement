@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{% block title %}Movements Details{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h2>Movements</h2>
+  <form action="/movements" method="post">
+    <div class="form-group">
+        <label for="from-location">From location:</label>
+        <select name="from-location" id="from-location" >
+            <option value="none">None</option>
+            {% for location in locations %}
+            <option value="{{location.id}}">{{location.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="to-location">To location:</label>
+        <select name="to-location" id="to-location" >
+            <option value="none">None</option>
+            {% for location in locations %}
+                <option value="{{location.id}}">{{location.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="product">Product:</label>
+        <select name="product" id="product" required>
+            {% for product in products %}
+            <option value="{{product.id}}">{{product.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" min="1" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Movement</button>
+  </form>
+
+
+    {% if movements|length < 1%}
+        <h4>No movements yet</h4>
+    {% else %}
+            <h2>
+                Prvious movements
+            </h2>
+                    
+            <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            {% for movement in movements %}
+            <tbody>
+                <tr>
+                    <td>{{movement.movement_id}}</td>
+                    <td>{{movement.from_location.name}}</td>
+                    <td>{{movement.to_location.name}}</td>
+                    <td>{{movement.product.name}}</td>
+                    <td>{{movement.quantity}}</td>
+                    <td>
+                        <a href="/movements/{{movement.movement_id}}/update">Update</a>
+                        <!-- <a href="" ></a>Delete</a> -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+
+        {% if error %}
+            <p class="text-danger"><strong>Error:</strong> {{ error }}
+        {% endif %}
+ </div>
+  
+{% endif %}
+{% endblock %}
