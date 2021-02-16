@@ -216,11 +216,15 @@ def update_movements(id):
         movements = Movement.query.all()
         return render_template('update_movements.html',products=products,locations=locations,movement=movement_to_be_updated)
     if request.method == "POST":
-        movement_to_be_updated.to_location_id = request.form["to_location"]
-        movement_to_be_updated.from_location_id = request.form["from_location"]
+        movement_to_be_updated.to_location_id = request.form["to-location"]
+        movement_to_be_updated.from_location_id = request.form["from-location"]
         movement_to_be_updated.product_id = request.form["product"]
         movement_to_be_updated.quantity = request.form["quantity"] 
-        pass
+        try:
+            db.session.commit()
+            return redirect('/movements')
+        except:
+            return "Database error"
 
 if __name__ == "__main__":
     app.run(debug=True)
